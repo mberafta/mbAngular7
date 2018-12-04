@@ -13,7 +13,7 @@ import { ItemListComponent, ItemDetailsComponent, ItemEditComponent } from './co
 import { MainNavigationComponent } from './components/navigation/main-navigation/main-navigation.component';
 import { CounterComponent } from './components/counter/counter.component';
 
-// Services
+// Services + Factories
 import { ItemService, ReactiveItemService } from './services/services.index';
 
 @NgModule({
