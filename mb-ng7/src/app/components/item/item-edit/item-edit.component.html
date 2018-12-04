@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-sm-12 col-md-4 offset-md-4">
+        <form [formGroup]="currentForm" (ngSubmit)="onSubmit(currentForm.value)">
+            <div class="form-group">
+                <label for="nameInput">NOM</label>
+                <input class="form-control" id="nameInput" formControlName="name">
+            </div>
+            <div class="form-group">
+                <label for="detailsInput">DÉTAILS</label>
+                <input class="form-control" id="detailsInput" formControlName="details">
+            </div>
+            <button class="btn btn-primary" type="submit" *ngIf="currentForm.valid">Valider</button>
+        </form>
+    </div>
+    <div class="col-sm-12 col-md-4 offset-md-4" *ngIf="!currentForm.valid">
+        <p class="text-danger" *ngIf="nameControl.hasError('required')">Le nom est requis</p>
+        <p class="text-danger" *ngIf="detailsControl.hasError('required')">Les détails sont requis</p>
+    </div>
+</div>
