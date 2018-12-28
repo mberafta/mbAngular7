@@ -36,7 +36,7 @@ export class ItemEditComponent {
         };
 
         this.is.post(postObj).subscribe(
-            (data: any) => { console.log("Donnée ajoutée au serveur : ", data); this.router.navigate(['/item']); },
+            (data: any) => { console.log("Donnée ajoutée au serveur : ", data); this.router.navigate(['/item', data.id]); },
             (error:any) => {  },
             () => {  }
         );

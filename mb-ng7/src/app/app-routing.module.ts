@@ -13,7 +13,14 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'item/edit',
+    path: 'item/:id',
+    component: ItemListComponent,
+    children: [
+      { path: 'details/:id', component: ItemDetailsComponent }
+    ]
+  },
+  {
+    path: 'item-edit',
     component: ItemEditComponent
   }
 ];

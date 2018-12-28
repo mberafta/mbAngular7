@@ -13,7 +13,7 @@
         </form>
     </div>
     <div class="col-sm-12 col-md-4 offset-md-4" *ngIf="!currentForm.valid">
-        <p class="text-danger" *ngIf="nameControl.hasError('required')">Le nom est requis</p>
-        <p class="text-danger" *ngIf="detailsControl.hasError('required')">Les détails sont requis</p>
+        <p class="text-danger" *ngIf="!nameControl.pristine && nameControl.hasError('required')">Le nom est requis</p>
+        <p class="text-danger" *ngIf="!detailsControl.pristine && detailsControl.hasError('required')">Les détails sont requis</p>
     </div>
 </div>

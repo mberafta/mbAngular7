@@ -6,7 +6,9 @@ import {
     state,
     style,
     transition,
-    animate
+    animate,
+    stagger,
+    query
 } from '@angular/animations';
 
 @Component({
@@ -22,7 +24,9 @@ import {
             state('*', style({
                 transform: 'translateX(0px)'
             })),
-            transition('void <=> *', animate('0.5s ease-in-out'))
+            transition('void => *', [
+               animate('0.5s ease-in-out')
+            ])
         ])
     ]
 })
@@ -30,6 +34,8 @@ import {
 export class ItemListComponent implements OnInit {
 
     items: any[];
+
+    newItem: any;
 
     constructor(
         private itemService: ItemService,
@@ -41,9 +47,13 @@ export class ItemListComponent implements OnInit {
         this.itemService.getData().subscribe(
             (data: any) => {
                 this.items = data;
-            }
-        )
 
+                let editIdParam = activatedRoute.snapshot.params['id'];
+                if(editIdParam){
+                    this.newItem = this.items.find(item => item.id == editIdParam);
+                }
+            }
+        );
     }
 
     ngOnInit() {

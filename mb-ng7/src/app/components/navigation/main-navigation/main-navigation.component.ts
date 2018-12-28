@@ -30,7 +30,7 @@ export class MainNavigationComponent implements OnInit {
 
   pages = [
     { name: "Liste des items", link: '/item' },
-    { name: "Création", link: '/item/edit' }
+    { name: "Création", link: '/item-edit' }
   ];
 
   constructor(public activeRouter: ActivatedRoute) {

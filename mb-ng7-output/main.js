@@ -102,7 +102,14 @@ var routes = [
         ]
     },
     {
-        path: 'item/edit',
+        path: 'item/:id',
+        component: _components_item_item_index__WEBPACK_IMPORTED_MODULE_3__["ItemListComponent"],
+        children: [
+            { path: 'details/:id', component: _components_item_item_index__WEBPACK_IMPORTED_MODULE_3__["ItemDetailsComponent"] }
+        ]
+    },
+    {
+        path: 'item-edit',
         component: _components_item_item_index__WEBPACK_IMPORTED_MODULE_3__["ItemEditComponent"]
     }
 ];
@@ -527,7 +534,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div class=\"col-sm-12 col-md-4 offset-md-4\">\r\n        <form [formGroup]=\"currentForm\" (ngSubmit)=\"onSubmit(currentForm.value)\">\r\n            <div class=\"form-group\">\r\n                <label for=\"nameInput\">NOM</label>\r\n                <input class=\"form-control\" id=\"nameInput\" formControlName=\"name\">\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <label for=\"detailsInput\">DÉTAILS</label>\r\n                <input class=\"form-control\" id=\"detailsInput\" formControlName=\"details\">\r\n            </div>\r\n            <button class=\"btn btn-primary\" type=\"submit\" *ngIf=\"currentForm.valid\">Valider</button>\r\n        </form>\r\n    </div>\r\n    <div class=\"col-sm-12 col-md-4 offset-md-4\" *ngIf=\"!currentForm.valid\">\r\n        <p class=\"text-danger\" *ngIf=\"nameControl.hasError('required')\">Le nom est requis</p>\r\n        <p class=\"text-danger\" *ngIf=\"detailsControl.hasError('required')\">Les détails sont requis</p>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"row\">\r\n    <div class=\"col-sm-12 col-md-4 offset-md-4\">\r\n        <form [formGroup]=\"currentForm\" (ngSubmit)=\"onSubmit(currentForm.value)\">\r\n            <div class=\"form-group\">\r\n                <label for=\"nameInput\">NOM</label>\r\n                <input class=\"form-control\" id=\"nameInput\" formControlName=\"name\">\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <label for=\"detailsInput\">DÉTAILS</label>\r\n                <input class=\"form-control\" id=\"detailsInput\" formControlName=\"details\">\r\n            </div>\r\n            <button class=\"btn btn-primary\" type=\"submit\" *ngIf=\"currentForm.valid\">Valider</button>\r\n        </form>\r\n    </div>\r\n    <div class=\"col-sm-12 col-md-4 offset-md-4\" *ngIf=\"!currentForm.valid\">\r\n        <p class=\"text-danger\" *ngIf=\"!nameControl.pristine && nameControl.hasError('required')\">Le nom est requis</p>\r\n        <p class=\"text-danger\" *ngIf=\"!detailsControl.pristine && detailsControl.hasError('required')\">Les détails sont requis</p>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -583,7 +590,7 @@ var ItemEditComponent = /** @class */ (function () {
             name: submittedForm['name'],
             details: submittedForm['details']
         };
-        this.is.post(postObj).subscribe(function (data) { console.log("Donnée ajoutée au serveur : ", data); _this.router.navigate(['/item']); }, function (error) { }, function () { });
+        this.is.post(postObj).subscribe(function (data) { console.log("Donnée ajoutée au serveur : ", data); _this.router.navigate(['/item', data.id]); }, function (error) { }, function () { });
     };
     ItemEditComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Component"])({
@@ -607,7 +614,7 @@ var ItemEditComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvaXRlbS9pdGVtLWxpc3QvaXRlbS1saXN0LmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = ".mb-max-height{\r\n    max-height:75%;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9pdGVtL2l0ZW0tbGlzdC9pdGVtLWxpc3QuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGVBQWU7Q0FDbEIiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2l0ZW0vaXRlbS1saXN0L2l0ZW0tbGlzdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1iLW1heC1oZWlnaHR7XHJcbiAgICBtYXgtaGVpZ2h0Ojc1JTtcclxufSJdfQ== */"
 
 /***/ }),
 
@@ -618,7 +625,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-12\">\r\n            <ul class=\"list-group\">\r\n                <li class=\"list-group-item d-flex justify-content-between align-items-center\" *ngFor=\"let item of items; let i=index;\" [@itemState]>\r\n                    {{item.id}}&nbsp; - &nbsp;{{item.name}}\r\n                    <button class=\"btn btn-dark float-right\" (click)=\"onDeleteItem(i)\">Supprimer</button>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n        <div class=\"col-sm-12\">\r\n            <router-outlet></router-outlet>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-12 col-md-6 offset-md-3 mb-max-height\">\r\n            <ul class=\"list-group\">\r\n                <li class=\"list-group-item d-flex justify-content-between align-items-center\" *ngFor=\"let item of items; let i=index;\" [@itemState]>\r\n                    {{item.name}}\r\n                    <span class=\"badge badge-pill badge-danger\" *ngIf=\"newItem != null && item.id == newItem.id\">Nouveau !</span>\r\n                    <button class=\"btn btn-dark float-right\" (click)=\"onDeleteItem(i)\">Supprimer</button>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n        <div class=\"col-sm-12\">\r\n            <router-outlet></router-outlet>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -652,6 +659,10 @@ var ItemListComponent = /** @class */ (function () {
         // Récupérer les éléments du serveur 
         this.itemService.getData().subscribe(function (data) {
             _this.items = data;
+            var editIdParam = activatedRoute.snapshot.params['id'];
+            if (editIdParam) {
+                _this.newItem = _this.items.find(function (item) { return item.id == editIdParam; });
+            }
         });
     }
     ItemListComponent.prototype.ngOnInit = function () {
@@ -681,7 +692,9 @@ var ItemListComponent = /** @class */ (function () {
                     Object(_angular_animations__WEBPACK_IMPORTED_MODULE_4__["state"])('*', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_4__["style"])({
                         transform: 'translateX(0px)'
                     })),
-                    Object(_angular_animations__WEBPACK_IMPORTED_MODULE_4__["transition"])('void <=> *', Object(_angular_animations__WEBPACK_IMPORTED_MODULE_4__["animate"])('0.5s ease-in-out'))
+                    Object(_angular_animations__WEBPACK_IMPORTED_MODULE_4__["transition"])('void => *', [
+                        Object(_angular_animations__WEBPACK_IMPORTED_MODULE_4__["animate"])('0.5s ease-in-out')
+                    ])
                 ])
             ],
             styles: [__webpack_require__(/*! ./item-list.component.css */ "./src/app/components/item/item-list/item-list.component.css")]
@@ -769,7 +782,7 @@ var MainNavigationComponent = /** @class */ (function () {
         this.isCollapsed = false;
         this.pages = [
             { name: "Liste des items", link: '/item' },
-            { name: "Création", link: '/item/edit' }
+            { name: "Création", link: '/item-edit' }
         ];
     }
     MainNavigationComponent.prototype.changeCollapseState = function () {
