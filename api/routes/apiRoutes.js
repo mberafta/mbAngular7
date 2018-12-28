@@ -3,10 +3,6 @@ const express = require('express'),
     itemsController = require('../controllers/itemsController');
 
 
-/**
- * ROUTING
- */
-
 // ITEMS
 router.get("/items/:id?", itemsController.get);
 router.post("/items", itemsController.post);

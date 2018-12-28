@@ -342,7 +342,7 @@ var CounterComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvZm9vdGVyL2Zvb3Rlci5jb21wb25lbnQuY3NzIn0= */"
+module.exports = ".mb-footer{\r\n    width:100%;\r\n    margin-top:auto;\r\n    background:#2c3e50;\r\n    padding-top:1em;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9mb290ZXIvZm9vdGVyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxXQUFXO0lBQ1gsZ0JBQWdCO0lBQ2hCLG1CQUFtQjtJQUNuQixnQkFBZ0I7Q0FDbkIiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2Zvb3Rlci9mb290ZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tYi1mb290ZXJ7XHJcbiAgICB3aWR0aDoxMDAlO1xyXG4gICAgbWFyZ2luLXRvcDphdXRvO1xyXG4gICAgYmFja2dyb3VuZDojMmMzZTUwO1xyXG4gICAgcGFkZGluZy10b3A6MWVtO1xyXG59Il19 */"
 
 /***/ }),
 
@@ -353,7 +353,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar fixed-bottom navbar-light bg-light\">\r\n    <div class=\"row\">\r\n        <div class=\"col-4\">\r\n            Footer partie 1\r\n        </div>\r\n        <div class=\"col-4\">\r\n            Footer partie 2\r\n        </div>\r\n        <div class=\"col-4\">\r\n            Footer partie 3\r\n        </div>\r\n    </div>\r\n</nav>"
+module.exports = "<div class=\"mb-footer\">\r\n    <div class=\"container\">\r\n        <div class=\"row\">\r\n            <div class=\"col-sm-4\">\r\n                <h4 class=\"text-center\" style=\"color:white;\">FOOTER BLOCK 1</h4>\r\n            </div>\r\n            <div class=\"col-sm-4\">\r\n                <h4 class=\"text-center\" style=\"color:white;\">FOOTER BLOCK 2</h4>\r\n            </div>\r\n            <div class=\"col-sm-4\">\r\n                <h4 class=\"text-center\" style=\"color:white;\">FOOTER BLOCK 3</h4>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -614,7 +614,7 @@ var ItemEditComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".mb-max-height{\r\n    max-height:75%;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9pdGVtL2l0ZW0tbGlzdC9pdGVtLWxpc3QuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGVBQWU7Q0FDbEIiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2l0ZW0vaXRlbS1saXN0L2l0ZW0tbGlzdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1iLW1heC1oZWlnaHR7XHJcbiAgICBtYXgtaGVpZ2h0Ojc1JTtcclxufSJdfQ== */"
+module.exports = ".mb-vertical-offset{\r\n    margin-top:1em;\r\n    margin-bottom:1.5em;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9pdGVtL2l0ZW0tbGlzdC9pdGVtLWxpc3QuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGVBQWU7SUFDZixvQkFBb0I7Q0FDdkIiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2l0ZW0vaXRlbS1saXN0L2l0ZW0tbGlzdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1iLXZlcnRpY2FsLW9mZnNldHtcclxuICAgIG1hcmdpbi10b3A6MWVtO1xyXG4gICAgbWFyZ2luLWJvdHRvbToxLjVlbTtcclxufSJdfQ== */"
 
 /***/ }),
 
@@ -625,7 +625,7 @@ module.exports = ".mb-max-height{\r\n    max-height:75%;\r\n}\r\n/*# sourceMappi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-12 col-md-6 offset-md-3 mb-max-height\">\r\n            <ul class=\"list-group\">\r\n                <li class=\"list-group-item d-flex justify-content-between align-items-center\" *ngFor=\"let item of items; let i=index;\" [@itemState]>\r\n                    {{item.name}}\r\n                    <span class=\"badge badge-pill badge-danger\" *ngIf=\"newItem != null && item.id == newItem.id\">Nouveau !</span>\r\n                    <button class=\"btn btn-dark float-right\" (click)=\"onDeleteItem(i)\">Supprimer</button>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n        <div class=\"col-sm-12\">\r\n            <router-outlet></router-outlet>\r\n        </div>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-12 col-md-6 offset-md-3 mb-vertical-offset\">\r\n            <ul class=\"list-group\">\r\n                <li class=\"list-group-item d-flex justify-content-between align-items-center\" *ngFor=\"let item of items; let i=index;\"\r\n                    [@itemState]>\r\n                    {{item.name}}\r\n                    <span class=\"badge badge-pill badge-danger\" *ngIf=\"newItem != null && item.id == newItem.id\">Nouveau\r\n                        !</span>\r\n                    <button class=\"btn btn-dark float-right\" (click)=\"onDeleteItem(i)\">Supprimer</button>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n        <div class=\"col-sm-12\">\r\n            <router-outlet></router-outlet>\r\n        </div> \r\n    </div>\r\n</div>"
 
 /***/ }),
 
