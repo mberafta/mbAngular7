@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { LocationStrategy, HashLocationStrategy, APP_BASE_HREF } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppBootstrapModule } from './app-bootstrap.module';
 
 // Components
 import { AppComponent } from './app.component';
@@ -31,7 +32,8 @@ import { ItemService, ReactiveItemService } from './services/services.index';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppBootstrapModule
   ],
   providers: [
     ItemService,

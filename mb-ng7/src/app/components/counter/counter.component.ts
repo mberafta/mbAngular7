@@ -1,5 +1,6 @@
 import { ReactiveItemService } from './../../services/reactive-item.service';
 import { Component, OnInit } from '@angular/core';
+import { ItemService } from 'src/app/services/item.service';
 
 @Component({
     selector: 'mbng7-counter',
@@ -11,13 +12,13 @@ export class CounterComponent implements OnInit{
 
     currentCount:number;
 
-    constructor(private ris:ReactiveItemService){
+    constructor(private ris:ReactiveItemService, private is:ItemService){
 
     }
 
     ngOnInit(){
-        this.ris.get().subscribe(data => {
-            this.currentCount = data.length;
+        this.is.get().subscribe(data => {
+            this.currentCount = (data as any[]).length;
         });
     }
 

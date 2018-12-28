@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "npm run ngBuild && nodemon ./bin/www",
-    "ngBuild" : "cd mb-ng7 && ng build && cd.."
+    "ngBuild": "cd mb-ng7 && ng build && cd.."
   },
   "dependencies": {
     "body-parser": "~1.17.1",
@@ -15,6 +15,7 @@
     "mongoose": "^5.3.14",
     "morgan": "^1.8.2",
     "path": "^0.12.7",
-    "serve-favicon": "^2.4.5"
+    "serve-favicon": "^2.4.5",
+    "uuid": "^3.3.2"
   }
 }

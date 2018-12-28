@@ -10,6 +10,7 @@ export class MainNavigationComponent implements OnInit {
 
   // Gestion de la classe active sur les liens de la navbar
   activePage: string;
+  isCollapsed: boolean = false;
 
   pages = [
     { name: "Liste des items", link: '/item' },
@@ -18,6 +19,10 @@ export class MainNavigationComponent implements OnInit {
 
   constructor(public activeRouter: ActivatedRoute) {
 
+  }
+
+  changeCollapseState(): void {
+    this.isCollapsed = !this.isCollapsed;
   }
 
   ngOnInit() {
