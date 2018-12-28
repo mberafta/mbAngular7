@@ -4,7 +4,7 @@ const items = [];
 
 for (let i = 0; i < 25; i++) {
     items.push({
-        id: uuid(),
+        id: uuid().toString(),
         name: "Item " + (i + 1),
         details: "Descriptionb de l'item " + (i + 1)
     });

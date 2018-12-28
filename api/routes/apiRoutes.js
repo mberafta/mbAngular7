@@ -8,7 +8,8 @@ const express = require('express'),
  */
 
 // ITEMS
-router.get("/items", itemsController.get);
+router.get("/items/:id?", itemsController.get);
 router.post("/items", itemsController.post);
+router.delete("/items/:id?", itemsController.delete);
 
 module.exports = router;

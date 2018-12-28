@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LocationStrategy, HashLocationStrategy, APP_BASE_HREF } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppBootstrapModule } from './app-bootstrap.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Components
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { MainHeaderComponent } from './components/header/main-header/main-header
 import { ItemListComponent, ItemDetailsComponent, ItemEditComponent } from './components/item/item.index';
 import { MainNavigationComponent } from './components/navigation/main-navigation/main-navigation.component';
 import { CounterComponent } from './components/counter/counter.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 // Services
 import { ItemService, ReactiveItemService } from './services/services.index';
@@ -25,7 +27,8 @@ import { ItemService, ReactiveItemService } from './services/services.index';
     ItemListComponent,
     ItemDetailsComponent,
     ItemEditComponent,
-    CounterComponent
+    CounterComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +36,7 @@ import { ItemService, ReactiveItemService } from './services/services.index';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     AppBootstrapModule
   ],
   providers: [

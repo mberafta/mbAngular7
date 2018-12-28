@@ -1,28 +1,14 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-12 col-md-4 offset-md-4">
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>ID</th>
-                        <th>NOM</th>
-                        <th>ACTIONS</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of items; let i=index;">
-                        <td>{{item.id}}</td>
-                        <td>{{item.name}}</td>
-                        <td>
-                            <a class="btn btn-success" [routerLink]="['./details', item.id]">Détails</a>
-                            <button class="btn btn-info" (click)="onDeleteItem(i)">Supprimer</button>
-                            <!-- <button class="btn btn-info" (click)="showItemDetails(item.id)">Détails</button> -->
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="col-sm-12">
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let item of items; let i=index;" [@itemState]>
+                    {{item.id}}&nbsp; - &nbsp;{{item.name}}
+                    <button class="btn btn-dark float-right" (click)="onDeleteItem(i)">Supprimer</button>
+                </li>
+            </ul>
         </div>
-        <div class="col-sm-12 col-md-6">
+        <div class="col-sm-12">
             <router-outlet></router-outlet>
         </div>
     </div>

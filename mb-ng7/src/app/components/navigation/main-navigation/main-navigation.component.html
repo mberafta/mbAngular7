@@ -8,7 +8,7 @@
       (click)="changeCollapseState()">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" [collapse]="isCollapsed">
+  <div class="collapse navbar-collapse" [collapse]="isCollapsed" [@openClose]="isCollapsed ? 'closed': 'open'">
     <ul class="navbar-nav">
       <li class="nav-item" *ngFor="let p of pages">
         <a class="nav-link" [routerLink]="[p.link]">{{p.name}}</a>

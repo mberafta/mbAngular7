@@ -13,13 +13,13 @@ export class CounterComponent implements OnInit{
     currentCount:number;
 
     constructor(private ris:ReactiveItemService, private is:ItemService){
-
+        this.is.getData().subscribe((data) => {
+            this.currentCount = (data as any[]).length;
+        });
     }
 
     ngOnInit(){
-        this.is.get().subscribe(data => {
-            this.currentCount = (data as any[]).length;
-        });
+        this.is.get();
     }
 
 }

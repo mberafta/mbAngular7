@@ -1,14 +1,14 @@
 const mockDb = require('../db/mockDb'),
+    uuid = require('uuid/v4'),
     items = [...mockDb.items];
 
 var clientItems = [...items];
 
 module.exports = {
     get: (req, res) => {
-        let idParam = req.param.id;
-
+        let idParam = req.query['id'];
         try {
-            let responseData = idParam ? items.find(i => i.id == idParam) : items;
+            let responseData = idParam ? clientItems.filter(i => i.id == idParam) : clientItems;
             res.status(200);
             res.json(responseData);
         }
@@ -22,16 +22,48 @@ module.exports = {
         try {
             let len = items.length,
                 newItem = {
-                    id: "it" + len,
+                    id: uuid().toString(),
                     name: req.body.name,
                     details: req.body.details
                 };
+
+            clientItems.splice(0, 0, newItem);
+
+            console.log(clientItems);
 
             res.status(200);
             res.json(newItem);
         }
         catch (e) {
             res.status(400);
+            res.json(e);
+        }
+    },
+    delete: (req, res) => {
+        try {
+            let idParam = req.query['id'];
+
+            console.log("Paramètre reçu", idParam);
+
+            if (idParam) {
+                let existingItem = clientItems.find(item => item.id == idParam.toString());
+                if (existingItem) {
+                    clientItems = [...clientItems].filter(item => item.id !== idParam);
+                    res.status(200);
+                    res.json(existingItem);
+                }
+                else {
+                    res.status(400);
+                    res.json({ error: "Aucun item n'a été trouvé avec l'id " + idParam });
+                }
+            }
+            else {
+                res.status(400);
+                res.json({ error: "L'id de l'élément à effacer est introuvable." });
+            }
+        }
+        catch (e) {
+            res.status(500);
             res.json(e);
         }
     }

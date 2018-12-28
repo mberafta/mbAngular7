@@ -19,7 +19,7 @@ export class ItemDetailsComponent implements OnInit {
 
     ngOnInit() {
         this.activatedRoute.params.subscribe((p) => {
-            this.itemService.get().subscribe((data) => {
+            this.itemService.getData().subscribe((data) => {
                 let castedData = [...(data as Array<any>)];
                 console.log(castedData);
                 this.currentItem = castedData.find(x => x.id == p['id']);
