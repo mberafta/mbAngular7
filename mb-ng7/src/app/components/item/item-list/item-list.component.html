@@ -1,18 +1,16 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12 col-md-6 offset-md-3 mb-vertical-offset">
-            <ul class="list-group">
-                <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let item of items; let i=index;"
-                    [@itemState]>
-                    {{item.name}}
-                    <span class="badge badge-pill badge-danger" *ngIf="newItem != null && item.id == newItem.id">Nouveau
-                        !</span>
-                    <button class="btn btn-dark float-right" (click)="onDeleteItem(i)">Supprimer</button>
-                </li>
-            </ul>
-        </div>
-        <div class="col-sm-12">
-            <router-outlet></router-outlet>
-        </div> 
+<div class="row mbng7-main-row-fullscreen" style="overflow-y:scroll;">
+    <div class="col-sm-12 col-md-6 offset-md-3 mb-vertical-offset">
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let item of items; let i=index;"
+                [@itemState]>
+                {{item.name}}
+                <span class="badge badge-pill badge-danger" *ngIf="newItem != null && item.id == newItem.id">Nouveau
+                    !</span>
+                <button class="btn btn-dark float-right" (click)="onDeleteItem(i)">Supprimer</button>
+            </li>
+        </ul>
+    </div>
+    <div class="col-sm-12">
+        <router-outlet></router-outlet>
     </div>
 </div>

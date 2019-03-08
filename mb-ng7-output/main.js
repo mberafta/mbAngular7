@@ -406,7 +406,7 @@ module.exports = ".mb-jumb-blue{\r\n    background: #2C3A47;\r\n    color:white;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"jumbotron jumbotron-fluid mb-jumb-blue\">\r\n    <div class=\"container\">\r\n      <h1>MB NG7</h1>\r\n      <p>Petite application fullstack JS pour s'amuser avec Angular 7</p>\r\n      <mbng7-counter></mbng7-counter>\r\n    </div>\r\n  </div>"
+module.exports = "<div class=\"jumbotron jumbotron-fluid mb-jumb-blue\">\r\n  <div class=\"container\">\r\n    <h1>MB NG7</h1>\r\n    <p>Petite application fullstack JS pour s'amuser avec Angular 7</p>\r\n    <mbng7-counter></mbng7-counter>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -534,7 +534,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div class=\"col-sm-12 col-md-4 offset-md-4\">\r\n        <form [formGroup]=\"currentForm\" (ngSubmit)=\"onSubmit(currentForm.value)\">\r\n            <div class=\"form-group\">\r\n                <label for=\"nameInput\">NOM</label>\r\n                <input class=\"form-control\" id=\"nameInput\" formControlName=\"name\">\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <label for=\"detailsInput\">DÉTAILS</label>\r\n                <input class=\"form-control\" id=\"detailsInput\" formControlName=\"details\">\r\n            </div>\r\n            <button class=\"btn btn-primary\" type=\"submit\" *ngIf=\"currentForm.valid\">Valider</button>\r\n        </form>\r\n    </div>\r\n    <div class=\"col-sm-12 col-md-4 offset-md-4\" *ngIf=\"!currentForm.valid\">\r\n        <p class=\"text-danger\" *ngIf=\"!nameControl.pristine && nameControl.hasError('required')\">Le nom est requis</p>\r\n        <p class=\"text-danger\" *ngIf=\"!detailsControl.pristine && detailsControl.hasError('required')\">Les détails sont requis</p>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"row mbng7-main-row-fullscreen\">\r\n    <div class=\"col-sm-12 col-md-4 offset-md-4\">\r\n        <form [formGroup]=\"currentForm\" (ngSubmit)=\"onSubmit(currentForm.value)\">\r\n            <div class=\"form-group\">\r\n                <label for=\"nameInput\">NOM</label>\r\n                <input class=\"form-control\" id=\"nameInput\" formControlName=\"name\">\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <label for=\"detailsInput\">DÉTAILS</label>\r\n                <input class=\"form-control\" id=\"detailsInput\" formControlName=\"details\">\r\n            </div>\r\n            <button class=\"btn btn-primary\" type=\"submit\" *ngIf=\"currentForm.valid\">Valider</button>\r\n        </form>\r\n    </div>\r\n    <div class=\"col-sm-12 col-md-4 offset-md-4\" *ngIf=\"!currentForm.valid\">\r\n        <p class=\"text-danger\" *ngIf=\"!nameControl.pristine && nameControl.hasError('required')\">Le nom est requis</p>\r\n        <p class=\"text-danger\" *ngIf=\"!detailsControl.pristine && detailsControl.hasError('required')\">Les détails sont requis</p>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -625,7 +625,7 @@ module.exports = ".mb-vertical-offset{\r\n    margin-top:1em;\r\n    margin-bott
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-12 col-md-6 offset-md-3 mb-vertical-offset\">\r\n            <ul class=\"list-group\">\r\n                <li class=\"list-group-item d-flex justify-content-between align-items-center\" *ngFor=\"let item of items; let i=index;\"\r\n                    [@itemState]>\r\n                    {{item.name}}\r\n                    <span class=\"badge badge-pill badge-danger\" *ngIf=\"newItem != null && item.id == newItem.id\">Nouveau\r\n                        !</span>\r\n                    <button class=\"btn btn-dark float-right\" (click)=\"onDeleteItem(i)\">Supprimer</button>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n        <div class=\"col-sm-12\">\r\n            <router-outlet></router-outlet>\r\n        </div> \r\n    </div>\r\n</div>"
+module.exports = "<div class=\"row mbng7-main-row-fullscreen\" style=\"overflow-y:scroll;\">\r\n    <div class=\"col-sm-12 col-md-6 offset-md-3 mb-vertical-offset\">\r\n        <ul class=\"list-group\">\r\n            <li class=\"list-group-item d-flex justify-content-between align-items-center\" *ngFor=\"let item of items; let i=index;\"\r\n                [@itemState]>\r\n                {{item.name}}\r\n                <span class=\"badge badge-pill badge-danger\" *ngIf=\"newItem != null && item.id == newItem.id\">Nouveau\r\n                    !</span>\r\n                <button class=\"btn btn-dark float-right\" (click)=\"onDeleteItem(i)\">Supprimer</button>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n    <div class=\"col-sm-12\">\r\n        <router-outlet></router-outlet>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
