@@ -1,5 +1,5 @@
 import { TabItemComponent } from './../tab-item/tab-item.component';
-import { Component, AfterContentInit, OnInit, QueryList, ContentChildren } from '@angular/core';
+import { Component, AfterContentInit, OnInit, QueryList, ContentChildren, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'mb-tab-container',

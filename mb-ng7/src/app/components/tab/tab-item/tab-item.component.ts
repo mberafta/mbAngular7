@@ -1,9 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostBinding, ElementRef } from '@angular/core';
 
 @Component({
     selector: 'mb-tab-item',
     templateUrl: './tab-item.component.html',
-    styleUrls: ['./tab-item.component.css']
+    styles: [`
+        .hidden{
+            display:none;
+        }
+    `]
 })
 
 export class TabItemComponent implements OnInit {
@@ -12,15 +16,15 @@ export class TabItemComponent implements OnInit {
     @Input() title: string;
     active: boolean = false;
     name: string;
-    content:string;
+    content: string;
 
-    constructor() {
-
+    constructor(private elRef:ElementRef) {
+        
     }
 
     // Cycles de vie
     ngOnInit() {
-
+        
     }
 
     // Méthodes
