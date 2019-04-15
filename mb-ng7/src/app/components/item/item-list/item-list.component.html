@@ -22,3 +22,12 @@
         <router-outlet></router-outlet>
     </div>
 </div>
+<div class="row" style="margin-top:2em;">
+    <div class="col-sm-12">
+        <mb-tab-container>
+            <mb-tab-item *ngFor="let tab of tabs; let i = index;" [title]="tab.title">
+                {{tab.content}}
+            </mb-tab-item>
+        </mb-tab-container>
+    </div>
+</div>

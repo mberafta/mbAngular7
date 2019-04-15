@@ -15,6 +15,7 @@ import { ItemListComponent, ItemDetailsComponent, ItemEditComponent, ItemSearchC
 import { MainNavigationComponent } from './components/navigation/main-navigation/main-navigation.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { TabItemComponent, TabContainerComponent } from './components/tab/tab.index';
 
 // Services
 import { ItemService, ReactiveItemService } from './services/services.index';
@@ -38,6 +39,8 @@ import { AppConstants } from './app.constants';
     CounterComponent,
     FooterComponent,
     ItemSearchComponent,
+    TabContainerComponent,
+    TabItemComponent,
     PopupDirective,
     MbMessageDirective
   ],

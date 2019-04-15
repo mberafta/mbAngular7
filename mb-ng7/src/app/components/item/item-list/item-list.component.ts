@@ -25,7 +25,7 @@ import {
                 transform: 'translateX(0px)'
             })),
             transition('void => *', [
-               animate('0.5s ease-in-out')
+                animate('0.5s ease-in-out')
             ])
         ])
     ]
@@ -34,9 +34,10 @@ import {
 export class ItemListComponent implements OnInit, OnDestroy {
 
     items: any[];
-    searchResults:any[];
-    loading:boolean = false;
+    searchResults: any[];
+    loading: boolean = false;
     newItem: any;
+    tabs: any[];
 
     constructor(
         private itemService: ItemService,
@@ -50,7 +51,7 @@ export class ItemListComponent implements OnInit, OnDestroy {
                 this.items = data;
 
                 let editIdParam = activatedRoute.snapshot.params['id'];
-                if(editIdParam){
+                if (editIdParam) {
                     this.newItem = this.items.find(item => item.id == editIdParam);
                 }
             }
@@ -61,10 +62,16 @@ export class ItemListComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.itemService.get();
+
+        this.tabs = [
+            { title: 'Tab 1', content: 'Content 1', active: false },
+            { title: 'Tab 2', content: 'Content 2', active: false },
+            { title: 'Tab 3', content: 'Content 3', active: false }
+        ];
     }
 
-    ngOnDestroy(){
-        
+    ngOnDestroy() {
+
     }
 
     onDeleteItem(index: number) {
@@ -83,7 +90,7 @@ export class ItemListComponent implements OnInit, OnDestroy {
         this.router.navigate(['/', id], { relativeTo: this.activatedRoute })
     }
 
-    updateResults(ev:any){
+    updateResults(ev: any) {
         this.searchResults = ev;
     }
 
