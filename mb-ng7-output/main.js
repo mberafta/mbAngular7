@@ -231,7 +231,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_counter_counter_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/counter/counter.component */ "./src/app/components/counter/counter.component.ts");
 /* harmony import */ var _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/footer/footer.component */ "./src/app/components/footer/footer.component.ts");
 /* harmony import */ var _services_services_index__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./services/services.index */ "./src/app/services/services.index.ts");
-/* harmony import */ var _app_constants__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./app.constants */ "./src/app/app.constants.ts");
+/* harmony import */ var _directives_popup_directive__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./directives/popup.directive */ "./src/app/directives/popup.directive.ts");
+/* harmony import */ var _app_constants__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./app.constants */ "./src/app/app.constants.ts");
 
 // Modules
 
@@ -251,6 +252,8 @@ __webpack_require__.r(__webpack_exports__);
 
 // Services
 
+// Directives
+
 // Constants
 
 var AppModule = /** @class */ (function () {
@@ -267,7 +270,8 @@ var AppModule = /** @class */ (function () {
                 _components_item_item_index__WEBPACK_IMPORTED_MODULE_11__["ItemEditComponent"],
                 _components_counter_counter_component__WEBPACK_IMPORTED_MODULE_13__["CounterComponent"],
                 _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_14__["FooterComponent"],
-                _components_item_item_index__WEBPACK_IMPORTED_MODULE_11__["ItemSearchComponent"]
+                _components_item_item_index__WEBPACK_IMPORTED_MODULE_11__["ItemSearchComponent"],
+                _directives_popup_directive__WEBPACK_IMPORTED_MODULE_16__["PopupDirective"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -279,11 +283,11 @@ var AppModule = /** @class */ (function () {
                 _app_bootstrap_module__WEBPACK_IMPORTED_MODULE_7__["AppBootstrapModule"]
             ],
             providers: [
-                { provide: _app_constants__WEBPACK_IMPORTED_MODULE_16__["AppConstants"].API_ITEMS_URL, useValue: '/api/items' },
-                { provide: _app_constants__WEBPACK_IMPORTED_MODULE_16__["AppConstants"].API_SEARCH_URL, useValue: '/api/search' },
+                { provide: _app_constants__WEBPACK_IMPORTED_MODULE_17__["AppConstants"].API_ITEMS_URL, useValue: '/api/items' },
+                { provide: _app_constants__WEBPACK_IMPORTED_MODULE_17__["AppConstants"].API_SEARCH_URL, useValue: '/api/search' },
                 {
                     provide: _services_services_index__WEBPACK_IMPORTED_MODULE_15__["ItemService"],
-                    deps: [_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"], _app_constants__WEBPACK_IMPORTED_MODULE_16__["AppConstants"].API_ITEMS_URL, _app_constants__WEBPACK_IMPORTED_MODULE_16__["AppConstants"].API_SEARCH_URL],
+                    deps: [_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"], _app_constants__WEBPACK_IMPORTED_MODULE_17__["AppConstants"].API_ITEMS_URL, _app_constants__WEBPACK_IMPORTED_MODULE_17__["AppConstants"].API_SEARCH_URL],
                     useFactory: function (http, apiItemsUrl, apiSearchUrl) {
                         var itemFactoryImplementation = {
                             test: function () {
@@ -775,7 +779,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-sm-12 text-center\">\r\n    <div class=\"form-group\">\r\n        <label>Recherche par mots-clés</label>\r\n        <input class=\"form-control\" placeholder=\"Nom, détails ...\">\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"col-sm-12 text-center highlight\" popup>\r\n    <div class=\"form-group\">\r\n        <label>Recherche par mots-clés</label>\r\n        <input class=\"form-control\" placeholder=\"Nom, détails ...\">\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -799,6 +803,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+/**
+ * Remarques :
+ *
+ * Si nous utilisons la propriétés 'styles', alors le style appliqué est encapsulé avec l'élément,
+ * alors que si nous utilisons le tableay styleUrls ça n'est pas le cas. (shadow DOM p.455 ng-book 2)
+ */
 var ItemSearchComponent = /** @class */ (function () {
     function ItemSearchComponent(itemService, el) {
         this.itemService = itemService;
@@ -955,6 +965,37 @@ var MainNavigationComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_1__["ActivatedRoute"]])
     ], MainNavigationComponent);
     return MainNavigationComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/directives/popup.directive.ts":
+/*!***********************************************!*\
+  !*** ./src/app/directives/popup.directive.ts ***!
+  \***********************************************/
+/*! exports provided: PopupDirective */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PopupDirective", function() { return PopupDirective; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var PopupDirective = /** @class */ (function () {
+    function PopupDirective() {
+        alert('Popup test !');
+    }
+    PopupDirective = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Directive"])({
+            selector: '[popup]'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], PopupDirective);
+    return PopupDirective;
 }());
 
 

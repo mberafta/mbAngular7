@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "npm run ngBuild && nodemon ./bin/www",
+    "start": "concurrently \"nodemon ./bin/www\" \"npm run serve\"",
+    "serve": "cd mb-ng7 && ng serve --proxy-config proxy.config.json && cd..",
     "ngBuild": "cd mb-ng7 && ng build && cd.."
   },
   "dependencies": {
     "body-parser": "~1.17.1",
+    "concurrently": "^4.1.0",
     "cookie-parser": "^1.4.3",
     "debug": "~2.6.3",
     "express": "~4.15.2",

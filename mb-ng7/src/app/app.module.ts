@@ -20,6 +20,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ItemService, ReactiveItemService } from './services/services.index';
 import { ItemFactory } from './factories/item.factory';
 
+// Directives
+import { PopupDirective } from './directives/popup.directive';
+import { MbMessageDirective } from './directives/mbMessage.directive';
+
 // Constants
 import { AppConstants } from './app.constants';
 
@@ -33,7 +37,9 @@ import { AppConstants } from './app.constants';
     ItemEditComponent,
     CounterComponent,
     FooterComponent,
-    ItemSearchComponent
+    ItemSearchComponent,
+    PopupDirective,
+    MbMessageDirective
   ],
   imports: [
     BrowserModule,
