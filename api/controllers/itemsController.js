@@ -66,5 +66,20 @@ module.exports = {
             res.status(500);
             res.json(e);
         }
+    },
+    search: (req, res) => {
+        try {
+            let searchParam = req.query['search'],
+                searchResult = clientItems.filter(c => c.name.match(searchParam) || c.details.match(searchParam));
+
+            res.status(200);
+            res.json(searchResult);
+        }
+        catch (e) {
+            res.status(500);
+            res.json({
+                message: e.toString()
+            });
+        }
     }
 };

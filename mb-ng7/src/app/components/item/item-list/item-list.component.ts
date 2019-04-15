@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ItemService, ReactiveItemService } from './../../../services/services.index';
 import { Router, ActivatedRoute } from '@angular/router';
 import {
@@ -31,10 +31,11 @@ import {
     ]
 })
 
-export class ItemListComponent implements OnInit {
+export class ItemListComponent implements OnInit, OnDestroy {
 
     items: any[];
-
+    searchResults:any[];
+    loading:boolean = false;
     newItem: any;
 
     constructor(
@@ -54,10 +55,16 @@ export class ItemListComponent implements OnInit {
                 }
             }
         );
+
+        this.itemService.testFactory();
     }
 
     ngOnInit() {
         this.itemService.get();
+    }
+
+    ngOnDestroy(){
+        
     }
 
     onDeleteItem(index: number) {
@@ -74,6 +81,10 @@ export class ItemListComponent implements OnInit {
 
     showItemDetails(id: any) {
         this.router.navigate(['/', id], { relativeTo: this.activatedRoute })
+    }
+
+    updateResults(ev:any){
+        this.searchResults = ev;
     }
 
 }

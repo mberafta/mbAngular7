@@ -18,21 +18,24 @@ app-root {
     position: relative;
 }
 
+app-root>:nth-child(4) {
+    height: calc(100% - 373px - 2rem);
+}
+
 mbng7-main-navigation {
     display: block;
     width: 100%;
 }
 
-.mbng7-main-row{
-    height:100%;
+.mbng7-main-row {
+    height: 100%;
 }
 
-.mbng7-main-row-fullscreen{
-    height: calc(100% - 373px - 2rem);
+.mbng7-main-row-fullscreen {
     display: block;
 }
 
-.row{
+.row {
     margin-left: 0px !important;
     margin-right: 0px !important;
 }

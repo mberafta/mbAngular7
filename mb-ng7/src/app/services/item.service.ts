@@ -1,19 +1,24 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, inject } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { throwError, BehaviorSubject, Subject } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { ItemFactory } from '../factories/item.factory';
 
 @Injectable()
 export class ItemService {
 
-    apiURL: string = '/api/items';
     httpHeaders = new HttpHeaders({
         'Content-Type': 'application/json'
     });
 
     public data: Subject<any> = new BehaviorSubject<any[]>([]);
 
-    constructor(private http: HttpClient) {
+    constructor(
+        private http: HttpClient,
+        @Inject('API_URL_ITEMS') private apiItemsURL: string,
+        @Inject('API_URL_SEARCH') private apiSearchURL: string,
+        private itemFactory: ItemFactory
+    ) {
 
     }
 
@@ -25,7 +30,7 @@ export class ItemService {
 
         let params = id ? { id: id } : null;
 
-        this.http.get(this.apiURL, {
+        this.http.get(this.apiItemsURL, {
             headers: this.httpHeaders,
             params: params
         }).subscribe((responseData: any[]) => {
@@ -34,16 +39,29 @@ export class ItemService {
     }
 
     post(obj: any) {
-        return this.http.post(this.apiURL, obj, {
+        return this.http.post(this.apiItemsURL, obj, {
             headers: this.httpHeaders
         });
     }
 
     delete(id: any) {
-        return this.http.delete(this.apiURL, {
+        return this.http.delete(this.apiItemsURL, {
             headers: this.httpHeaders,
             params: {
                 id: id
+            }
+        });
+    }
+
+    testFactory() {
+        this.itemFactory.test();
+    }
+
+    search(query: string) {
+        return this.http.get(this.apiSearchURL, {
+            headers: this.httpHeaders,
+            params: {
+                search: query
             }
         });
     }

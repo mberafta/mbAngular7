@@ -183,6 +183,28 @@ var AppComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/app.constants.ts":
+/*!**********************************!*\
+  !*** ./src/app/app.constants.ts ***!
+  \**********************************/
+/*! exports provided: AppConstants */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppConstants", function() { return AppConstants; });
+var AppConstants = /** @class */ (function () {
+    function AppConstants() {
+    }
+    AppConstants.API_ITEMS_URL = '/api/items';
+    AppConstants.API_SEARCH_URL = '/api/search';
+    return AppConstants;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/app.module.ts":
 /*!*******************************!*\
   !*** ./src/app/app.module.ts ***!
@@ -209,6 +231,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_counter_counter_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/counter/counter.component */ "./src/app/components/counter/counter.component.ts");
 /* harmony import */ var _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/footer/footer.component */ "./src/app/components/footer/footer.component.ts");
 /* harmony import */ var _services_services_index__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./services/services.index */ "./src/app/services/services.index.ts");
+/* harmony import */ var _app_constants__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./app.constants */ "./src/app/app.constants.ts");
 
 // Modules
 
@@ -228,6 +251,8 @@ __webpack_require__.r(__webpack_exports__);
 
 // Services
 
+// Constants
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -241,7 +266,8 @@ var AppModule = /** @class */ (function () {
                 _components_item_item_index__WEBPACK_IMPORTED_MODULE_11__["ItemDetailsComponent"],
                 _components_item_item_index__WEBPACK_IMPORTED_MODULE_11__["ItemEditComponent"],
                 _components_counter_counter_component__WEBPACK_IMPORTED_MODULE_13__["CounterComponent"],
-                _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_14__["FooterComponent"]
+                _components_footer_footer_component__WEBPACK_IMPORTED_MODULE_14__["FooterComponent"],
+                _components_item_item_index__WEBPACK_IMPORTED_MODULE_11__["ItemSearchComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -253,7 +279,20 @@ var AppModule = /** @class */ (function () {
                 _app_bootstrap_module__WEBPACK_IMPORTED_MODULE_7__["AppBootstrapModule"]
             ],
             providers: [
-                _services_services_index__WEBPACK_IMPORTED_MODULE_15__["ItemService"],
+                { provide: _app_constants__WEBPACK_IMPORTED_MODULE_16__["AppConstants"].API_ITEMS_URL, useValue: '/api/items' },
+                { provide: _app_constants__WEBPACK_IMPORTED_MODULE_16__["AppConstants"].API_SEARCH_URL, useValue: '/api/search' },
+                {
+                    provide: _services_services_index__WEBPACK_IMPORTED_MODULE_15__["ItemService"],
+                    deps: [_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"], _app_constants__WEBPACK_IMPORTED_MODULE_16__["AppConstants"].API_ITEMS_URL, _app_constants__WEBPACK_IMPORTED_MODULE_16__["AppConstants"].API_SEARCH_URL],
+                    useFactory: function (http, apiItemsUrl, apiSearchUrl) {
+                        var itemFactoryImplementation = {
+                            test: function () {
+                                console.log('ItemFactory used by ItemService');
+                            }
+                        };
+                        return new _services_services_index__WEBPACK_IMPORTED_MODULE_15__["ItemService"](http, apiItemsUrl, apiSearchUrl, itemFactoryImplementation);
+                    }
+                },
                 _services_services_index__WEBPACK_IMPORTED_MODULE_15__["ReactiveItemService"],
                 { provide: _angular_common__WEBPACK_IMPORTED_MODULE_5__["LocationStrategy"], useClass: _angular_common__WEBPACK_IMPORTED_MODULE_5__["HashLocationStrategy"] },
                 { provide: _angular_common__WEBPACK_IMPORTED_MODULE_5__["APP_BASE_HREF"], useValue: '/' }
@@ -625,7 +664,7 @@ module.exports = ".mb-vertical-offset{\r\n    margin-top:1em;\r\n    margin-bott
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row mbng7-main-row-fullscreen\" style=\"overflow-y:scroll;\">\r\n    <div class=\"col-sm-12 col-md-6 offset-md-3 mb-vertical-offset\">\r\n        <ul class=\"list-group\">\r\n            <li class=\"list-group-item d-flex justify-content-between align-items-center\" *ngFor=\"let item of items; let i=index;\"\r\n                [@itemState]>\r\n                {{item.name}}\r\n                <span class=\"badge badge-pill badge-danger\" *ngIf=\"newItem != null && item.id == newItem.id\">Nouveau\r\n                    !</span>\r\n                <button class=\"btn btn-dark float-right\" (click)=\"onDeleteItem(i)\">Supprimer</button>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n    <div class=\"col-sm-12\">\r\n        <router-outlet></router-outlet>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"row mbng7-main-row-fullscreen\">\r\n    <mb-item-search (loading)=\"loading = $event\" (results)=\"updateResults($event)\"></mb-item-search>\r\n    <div class=\"col-sm-12 text-center\">\r\n        <ul class=\"list-group\">\r\n            <li class=\"list-group-item\" *ngFor=\"let sr of searchResults\">\r\n                {{sr.name}}\r\n            </li>\r\n        </ul>\r\n    </div>\r\n    <div class=\"col-sm-12 mb-vertical-offset\">\r\n        <ul class=\"list-group\">\r\n            <li class=\"list-group-item d-flex justify-content-between align-items-center\"\r\n                *ngFor=\"let item of items; let i=index;\" [@itemState]>\r\n                {{item.name}}\r\n                <span class=\"badge badge-pill badge-danger\" *ngIf=\"newItem != null && item.id == newItem.id\">Nouveau\r\n                    !</span>\r\n                <button class=\"btn btn-dark float-right\" (click)=\"onDeleteItem(i)\">Supprimer</button>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n    <div class=\"col-sm-12\">\r\n        <router-outlet></router-outlet>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -656,6 +695,7 @@ var ItemListComponent = /** @class */ (function () {
         this.reactiveItemService = reactiveItemService;
         this.router = router;
         this.activatedRoute = activatedRoute;
+        this.loading = false;
         // Récupérer les éléments du serveur 
         this.itemService.getData().subscribe(function (data) {
             _this.items = data;
@@ -664,9 +704,12 @@ var ItemListComponent = /** @class */ (function () {
                 _this.newItem = _this.items.find(function (item) { return item.id == editIdParam; });
             }
         });
+        this.itemService.testFactory();
     }
     ItemListComponent.prototype.ngOnInit = function () {
         this.itemService.get();
+    };
+    ItemListComponent.prototype.ngOnDestroy = function () {
     };
     ItemListComponent.prototype.onDeleteItem = function (index) {
         var _this = this;
@@ -678,6 +721,9 @@ var ItemListComponent = /** @class */ (function () {
     };
     ItemListComponent.prototype.showItemDetails = function (id) {
         this.router.navigate(['/', id], { relativeTo: this.activatedRoute });
+    };
+    ItemListComponent.prototype.updateResults = function (ev) {
+        this.searchResults = ev;
     };
     ItemListComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -711,23 +757,115 @@ var ItemListComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/components/item/item.index.ts":
-/*!***********************************************!*\
-  !*** ./src/app/components/item/item.index.ts ***!
-  \***********************************************/
-/*! exports provided: ItemDetailsComponent, ItemListComponent, ItemEditComponent */
+/***/ "./src/app/components/item/item-search/item-search.component.css":
+/*!***********************************************************************!*\
+  !*** ./src/app/components/item/item-search/item-search.component.css ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvaXRlbS9pdGVtLXNlYXJjaC9pdGVtLXNlYXJjaC5jb21wb25lbnQuY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/components/item/item-search/item-search.component.html":
+/*!************************************************************************!*\
+  !*** ./src/app/components/item/item-search/item-search.component.html ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"col-sm-12 text-center\">\r\n    <div class=\"form-group\">\r\n        <label>Recherche par mots-clés</label>\r\n        <input class=\"form-control\" placeholder=\"Nom, détails ...\">\r\n    </div>\r\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/components/item/item-search/item-search.component.ts":
+/*!**********************************************************************!*\
+  !*** ./src/app/components/item/item-search/item-search.component.ts ***!
+  \**********************************************************************/
+/*! exports provided: ItemSearchComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _item_details_item_details_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./item-details/item-details.component */ "./src/app/components/item/item-details/item-details.component.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ItemDetailsComponent", function() { return _item_details_item_details_component__WEBPACK_IMPORTED_MODULE_0__["ItemDetailsComponent"]; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ItemSearchComponent", function() { return ItemSearchComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var src_app_services_item_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/item.service */ "./src/app/services/item.service.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 
-/* harmony import */ var _item_list_item_list_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./item-list/item-list.component */ "./src/app/components/item/item-list/item-list.component.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ItemListComponent", function() { return _item_list_item_list_component__WEBPACK_IMPORTED_MODULE_1__["ItemListComponent"]; });
 
-/* harmony import */ var _item_edit_item_edit_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./item-edit/item-edit.component */ "./src/app/components/item/item-edit/item-edit.component.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ItemEditComponent", function() { return _item_edit_item_edit_component__WEBPACK_IMPORTED_MODULE_2__["ItemEditComponent"]; });
+
+
+
+var ItemSearchComponent = /** @class */ (function () {
+    function ItemSearchComponent(itemService, el) {
+        this.itemService = itemService;
+        this.el = el;
+        this.loading = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.results = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+    }
+    ItemSearchComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        Object(rxjs__WEBPACK_IMPORTED_MODULE_3__["fromEvent"])(this.el.nativeElement, 'keyup')
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function () { _this.loading.emit(true); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (e) { return e.target.value; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])(function (text) { return text.length > 1; }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["debounceTime"])(250), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["switchMap"])(function (query) { return _this.itemService.search(query); }))
+            .subscribe(function (results) {
+            _this.loading.emit(false);
+            _this.results.emit(results);
+        }),
+            function (err) {
+                console.log(err);
+                _this.loading.emit(false);
+            },
+            function () {
+                _this.loading.emit(false);
+            };
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"])
+    ], ItemSearchComponent.prototype, "loading", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"])
+    ], ItemSearchComponent.prototype, "results", void 0);
+    ItemSearchComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'mb-item-search',
+            template: __webpack_require__(/*! ./item-search.component.html */ "./src/app/components/item/item-search/item-search.component.html"),
+            styles: [__webpack_require__(/*! ./item-search.component.css */ "./src/app/components/item/item-search/item-search.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_item_service__WEBPACK_IMPORTED_MODULE_2__["ItemService"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"]])
+    ], ItemSearchComponent);
+    return ItemSearchComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/item/item.index.ts":
+/*!***********************************************!*\
+  !*** ./src/app/components/item/item.index.ts ***!
+  \***********************************************/
+/*! exports provided: ItemSearchComponent, ItemDetailsComponent, ItemListComponent, ItemEditComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _item_search_item_search_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./item-search/item-search.component */ "./src/app/components/item/item-search/item-search.component.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ItemSearchComponent", function() { return _item_search_item_search_component__WEBPACK_IMPORTED_MODULE_0__["ItemSearchComponent"]; });
+
+/* harmony import */ var _item_details_item_details_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./item-details/item-details.component */ "./src/app/components/item/item-details/item-details.component.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ItemDetailsComponent", function() { return _item_details_item_details_component__WEBPACK_IMPORTED_MODULE_1__["ItemDetailsComponent"]; });
+
+/* harmony import */ var _item_list_item_list_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./item-list/item-list.component */ "./src/app/components/item/item-list/item-list.component.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ItemListComponent", function() { return _item_list_item_list_component__WEBPACK_IMPORTED_MODULE_2__["ItemListComponent"]; });
+
+/* harmony import */ var _item_edit_item_edit_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./item-edit/item-edit.component */ "./src/app/components/item/item-edit/item-edit.component.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ItemEditComponent", function() { return _item_edit_item_edit_component__WEBPACK_IMPORTED_MODULE_3__["ItemEditComponent"]; });
+
 
 
 
@@ -842,9 +980,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ItemService = /** @class */ (function () {
-    function ItemService(http) {
+    function ItemService(http, apiItemsURL, apiSearchURL, itemFactory) {
         this.http = http;
-        this.apiURL = '/api/items';
+        this.apiItemsURL = apiItemsURL;
+        this.apiSearchURL = apiSearchURL;
+        this.itemFactory = itemFactory;
         this.httpHeaders = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
             'Content-Type': 'application/json'
         });
@@ -856,7 +996,7 @@ var ItemService = /** @class */ (function () {
     ItemService.prototype.get = function (id) {
         var _this = this;
         var params = id ? { id: id } : null;
-        this.http.get(this.apiURL, {
+        this.http.get(this.apiItemsURL, {
             headers: this.httpHeaders,
             params: params
         }).subscribe(function (responseData) {
@@ -864,21 +1004,34 @@ var ItemService = /** @class */ (function () {
         });
     };
     ItemService.prototype.post = function (obj) {
-        return this.http.post(this.apiURL, obj, {
+        return this.http.post(this.apiItemsURL, obj, {
             headers: this.httpHeaders
         });
     };
     ItemService.prototype.delete = function (id) {
-        return this.http.delete(this.apiURL, {
+        return this.http.delete(this.apiItemsURL, {
             headers: this.httpHeaders,
             params: {
                 id: id
             }
         });
     };
+    ItemService.prototype.testFactory = function () {
+        this.itemFactory.test();
+    };
+    ItemService.prototype.search = function (query) {
+        return this.http.get(this.apiSearchURL, {
+            headers: this.httpHeaders,
+            params: {
+                search: query
+            }
+        });
+    };
     ItemService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])('API_URL_ITEMS')),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](2, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])('API_URL_SEARCH')),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], String, String, Object])
     ], ItemService);
     return ItemService;
 }());
