@@ -31,7 +31,10 @@ export class ItemSearchComponent implements OnInit {
     ngOnInit() {
         fromEvent(this.el.nativeElement, 'keyup')
             .pipe(
-                tap(() => { this.loading.emit(true); }),
+                tap(() => { 
+                    this.loading.emit(true); 
+                    this.currentLoading = true;
+                }),
                 map((e: any) => e.target.value),
                 filter((text: string) => text.length > 1),
                 debounceTime(250),
