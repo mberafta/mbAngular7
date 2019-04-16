@@ -6,7 +6,10 @@ for (let i = 0; i < 10; i++) {
     items.push({
         id: uuid().toString(),
         name: "Item " + (i + 1),
-        details: "Descriptionb de l'item " + (i + 1)
+        details: "Description de l'item " + (i + 1),
+        tags: [
+            'item', 'description', "" + i + 1
+        ]
     });
 }
 

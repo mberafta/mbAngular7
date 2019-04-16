@@ -35,6 +35,14 @@ mbng7-main-navigation {
     display: block;
 }
 
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding-top: 50px;
+    height: 50px;
+  }
+
 .row {
     margin-left: 0px !important;
     margin-right: 0px !important;

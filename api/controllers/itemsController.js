@@ -70,7 +70,9 @@ module.exports = {
     search: (req, res) => {
         try {
             let searchParam = req.query['search'],
-                searchResult = clientItems.filter(c => c.name.match(searchParam) || c.details.match(searchParam));
+                searchResult = clientItems.filter(c => c.name.match(searchParam)
+                    || c.details.match(searchParam)
+                    || c.tags.find(ct => ct.indexOf(searchParam) !== -1));
 
             res.status(200);
             res.json(searchResult);
