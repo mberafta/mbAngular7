@@ -1,12 +1,4 @@
 <div class="row mbng7-main-row-fullscreen">
-    <mb-item-search (loading)="loading = $event" (results)="updateResults($event)"></mb-item-search>
-    <div class="col-sm-12 text-center">
-        <ul class="list-group">
-            <li class="list-group-item" *ngFor="let sr of searchResults">
-                {{sr.name}}
-            </li>
-        </ul>
-    </div>
     <div class="col-sm-12 mb-vertical-offset">
         <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center"
@@ -20,14 +12,5 @@
     </div>
     <div class="col-sm-12">
         <router-outlet></router-outlet>
-    </div>
-</div>
-<div class="row" style="margin-top:2em;">
-    <div class="col-sm-12">
-        <mb-tab-container>
-            <mb-tab-item *ngFor="let tab of tabs; let i = index;" [title]="tab.title">
-                {{tab.content}}
-            </mb-tab-item>
-        </mb-tab-container>
     </div>
 </div>

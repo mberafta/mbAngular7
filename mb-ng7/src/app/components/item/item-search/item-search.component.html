@@ -1,7 +1,13 @@
-<div class="col-sm-12 text-center highlight">
-    <div class="form-group">
-        <label>Recherche par mots-clés</label>
-        <input class="form-control" placeholder="Nom, détails ...">
+<div class="row" style="padding:1em;">
+    <div class="col-sm-12 text-center highlight">
+        <div class="form-group">
+            <label>Recherche par mots-clés</label>
+            <input class="form-control" placeholder="Nom, détails ...">
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let r of currentResults">
+                {{r.name}} - {{r.details}}
+            </li>
+        </ul>
     </div>
 </div>
-

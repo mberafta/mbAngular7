@@ -21,6 +21,9 @@ export class ItemSearchComponent implements OnInit {
     @Output() loading: EventEmitter<boolean> = new EventEmitter<boolean>();
     @Output() results: EventEmitter<any[]> = new EventEmitter<any[]>();
 
+    currentLoading: boolean = false;
+    currentResults: any[] = [];
+
     constructor(private itemService: ItemService, private el: ElementRef) {
 
     }
@@ -36,16 +39,20 @@ export class ItemSearchComponent implements OnInit {
             )
             .subscribe(
                 (results: any[]) => {
-                    this.loading.emit(false);
-                    this.results.emit(results);
+                    // this.loading.emit(false);
+                    // this.results.emit(results);
+
+                    this.currentLoading = false;
+                    this.currentResults = results;
+
                 }),
-                (err:any) => {
-                    console.log(err);
-                    this.loading.emit(false);
-                },
-                () => {
-                    this.loading.emit(false);
-                }
+            (err: any) => {
+                console.log(err);
+                this.loading.emit(false);
+            },
+            () => {
+                this.loading.emit(false);
+            }
     }
 
 }

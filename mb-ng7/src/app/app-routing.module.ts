@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ItemListComponent, ItemDetailsComponent, ItemEditComponent } from './components/item/item.index';
+import { ItemListComponent, ItemDetailsComponent, ItemEditComponent, ItemSearchComponent } from './components/item/item.index';
 
 const routes: Routes = [
   { path: '', redirectTo: 'item', pathMatch: 'full' },
@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'item-edit',
     component: ItemEditComponent
+  },
+  {
+    path:'item-search',
+    component: ItemSearchComponent
   }
 ];
 

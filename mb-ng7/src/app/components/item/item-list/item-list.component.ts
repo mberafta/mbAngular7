@@ -34,8 +34,6 @@ import {
 export class ItemListComponent implements OnInit, OnDestroy {
 
     items: any[];
-    searchResults: any[];
-    loading: boolean = false;
     newItem: any;
     tabs: any[];
 
@@ -88,10 +86,6 @@ export class ItemListComponent implements OnInit, OnDestroy {
 
     showItemDetails(id: any) {
         this.router.navigate(['/', id], { relativeTo: this.activatedRoute })
-    }
-
-    updateResults(ev: any) {
-        this.searchResults = ev;
     }
 
 }
