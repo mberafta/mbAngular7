@@ -1,5 +1,5 @@
 <div class="row mbng7-main-row-fullscreen">
-    <div class="col-sm-12 mb-vertical-offset">
+    <!-- <div class="col-sm-12 mb-vertical-offset">
         <ul class="list-group">
             <li class="list-group-item d-flex justify-content-between align-items-center"
                 *ngFor="let item of items; let i=index;" [@itemState]>
@@ -9,8 +9,12 @@
                 <button class="btn btn-dark float-right" (click)="onDeleteItem(i)">Supprimer</button>
             </li>
         </ul>
-    </div>
+    </div> -->
     <div class="col-sm-12">
-        <router-outlet></router-outlet>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let c of comments">
+                <mb-ng7-comment [comment]="c"></mb-ng7-comment>
+            </li>
+        </ul>
     </div>
 </div>

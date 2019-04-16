@@ -12,11 +12,12 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 // Components
 import { AppComponent } from './app.component';
 import { MainHeaderComponent } from './components/header/main-header/main-header.component';
-import { ItemListComponent, ItemDetailsComponent, ItemEditComponent, ItemSearchComponent } from './components/item/item.index';
+import { ItemListComponent, ItemEditComponent, ItemSearchComponent } from './components/item/item.index';
 import { MainNavigationComponent } from './components/navigation/main-navigation/main-navigation.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TabItemComponent, TabContainerComponent } from './components/tab/tab.index';
+import { CommentComponent } from './components/comment/comment.component';
 
 // Services
 import { ItemService, ReactiveItemService } from './services/services.index';
@@ -35,13 +36,13 @@ import { AppConstants } from './app.constants';
     MainHeaderComponent,
     MainNavigationComponent,
     ItemListComponent,
-    ItemDetailsComponent,
     ItemEditComponent,
     CounterComponent,
     FooterComponent,
     ItemSearchComponent,
     TabContainerComponent,
     TabItemComponent,
+    CommentComponent,
     PopupDirective,
     MbMessageDirective
   ],

@@ -37,6 +37,15 @@ export class ItemListComponent implements OnInit, OnDestroy {
     newItem: any;
     tabs: any[];
 
+    comments:any[] = [
+        { content:"Great app", likes:0 },
+        { content:"Awesome app", likes:0 },
+        { content:"Bad app", likes:0 },
+        { content:"Great app", likes:0 },
+        { content:"Great app", likes:0 },
+        { content:"Great app", likes:0 }
+    ];
+
     constructor(
         private itemService: ItemService,
         private reactiveItemService: ReactiveItemService,
