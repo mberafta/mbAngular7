@@ -7,6 +7,7 @@ import { LocationStrategy, HashLocationStrategy, APP_BASE_HREF } from '@angular/
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppBootstrapModule } from './app-bootstrap.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 // Components
 import { AppComponent } from './app.component';
@@ -51,7 +52,10 @@ import { AppConstants } from './app.constants';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    AppBootstrapModule
+    AppBootstrapModule,
+    SocketIoModule.forRoot({
+      url:"http://localhost:3000", options:{}
+    })
   ],
   providers: [
     { provide: AppConstants.API_ITEMS_URL, useValue: '/api/items' },
